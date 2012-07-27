@@ -1,5 +1,18 @@
 <h1>All Articles</h1>
 
+<%=form_tag root_path do %>
+	<%=text_field_tag "limit", 10%>
+	<%=label_tag "Title" %>
+	<%= radio_button_tag "order_by", "title", true %>
+	<%=label_tag "Word Count" %>
+	<%= radio_button_tag "order_by", "word_count", false %>
+	<%=label_tag "Published" %>
+	<%= radio_button_tag "order_by", "published", false %>
+	<%=submit_tag "Submit"%>
+<%end%>
+
+
+
 <ul>
   <% @articles.each do |article| %>
     <li>
@@ -9,4 +22,3 @@
 </ul>
 
 <%= link_to "New Article", new_article_path, :class => "new_article" %>
-

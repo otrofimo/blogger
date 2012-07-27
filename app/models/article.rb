@@ -22,4 +22,16 @@ class Article < ActiveRecord::Base
       tagging.tag_id = tag.id
     end
   end
+
+  def self.ordered_by(param)
+      if param == 'title'
+        @articles = Article.order('title')
+      elsif param == 'published'
+        @articles = Article.order('created_at ASC')
+      elsif param == 'word_count'
+        @articles = Article.order('length(body) DESC')
+      else 
+        @articles = Article.all
+      end
+  end
 end
