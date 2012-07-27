@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_filter :require_login, :except => [:index, :show]
   
   def index
-    @articles = Article.limit(params[:limit]).ordered_by(params[:order_by])
+    @articles = Article.only(params)
   end
 
   def show

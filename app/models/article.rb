@@ -23,6 +23,18 @@ class Article < ActiveRecord::Base
     end
   end
 
+  def self.only(params) 
+    ordering = {'word_count' => 'length(body) DESC', 'published' => 'created_at ASC' , 'title' => 'title'}
+    if params[:limit].to_i > 0
+      return Article.order(ordering[params[:order_by]]).limit(params[:limit].to_i)
+    else
+      return Article.order(ordering[params[:order_by]])
+    end
+    # @articles = Article.order(ordering[params[:order_by]])
+    # @articles = @articl
+
+  end
+
   def self.ordered_by(param)
       if param == 'title'
         @articles = Article.order('title')
